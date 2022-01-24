@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/avischool/WordleValAndAvi/issues"
   },
-  "homepage": "https://github.com/avischool/WordleValAndAvi#readme"
+  "homepage": "https://github.com/avischool/WordleValAndAvi#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
