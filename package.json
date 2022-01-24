@@ -1,0 +1,19 @@
+{
+  "name": "wordlevalandavi",
+  "version": "1.0.0",
+  "description": "Worldle but Better - By Val and Avi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avischool/WordleValAndAvi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avischool/WordleValAndAvi/issues"
+  },
+  "homepage": "https://github.com/avischool/WordleValAndAvi#readme"
+}
