@@ -50,7 +50,7 @@ let checkGuess = (guess, correct) =>{
 const guess = (request, response) => {
   // Parse the id to generate a SQLite query
   const guess = request.params.guess;
-  const query = `SELECT posword FROM word WHERE posword = ?`;//random db columns/name
+  const query = `SELECT possword FROM word WHERE possword = ?`;//random db columns/name
 
   // db.get will replace all ? in query sequentially with
   // items from the array passed as the second parameter
@@ -76,8 +76,8 @@ const guess = (request, response) => {
         }
       } 
       findResult();
-    }
-    else {
+      }
+      else {
       response.sendStatus(404);
     }
   });
