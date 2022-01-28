@@ -64,16 +64,20 @@ const guess = (request, response) => {
     }
     // If nothing is returned, then result will be undefined
     if (result) {
-      try{
-        let correctWord = await getCorrect();
-        statusLst = checkGuess(guess, correctWord);
-        response.status(200).json({guess, statusLst});
-      }
-      catch{
-        console.error(error);
-        response.sendStatus(500);
-      }
-    } else {
+      const findResult = async() =>{
+        try{
+          let correctWord = await getCorrect();
+          statusLst = checkGuess(guess, correctWord);
+          response.status(200).json({guess, statusLst});
+        }
+        catch{
+          console.error(error);
+          response.sendStatus(500);
+        }
+      } 
+      findResult();
+    }
+    else {
       response.sendStatus(404);
     }
   });
