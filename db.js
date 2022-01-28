@@ -3,7 +3,7 @@
 //-----------------------------
 const path = require("path");
 const sqlite = require("sqlite3").verbose();
-const dbFile = path.join(__dirname, " .db");
+const dbFile = path.join(__dirname, "wordledb.db");
 const db = new sqlite.Database(dbFile, (error) => {
   if (error) return console.error(error.message);
   console.log(`Connected to database ${dbFile}`);
@@ -12,34 +12,39 @@ const db = new sqlite.Database(dbFile, (error) => {
 //#endregion Database Connection
 
 let getCorrect = () =>{
-  db.get(`SELECT word FROM correctword LIMIT 1 OFFSET 0`, [], (error, result)=>{
-    if (error) {
-      console.error(error.message);
-      return;
-    }
-    if (result) {
-      return result;
-    } else {
-      console.log("could not find correct word");
-    }
-  });
+  return new Promise((resolve, reject) =>{
+    db.get(`SELECT word FROM correctword LIMIT 1 OFFSET 0`, [], (error, result)=>{
+      if (error) {
+        console.error(error.message);
+        reject(error);
+      }
+      if (result) {
+        console.log("jsksj");
+        resolve(result);
+      } else {
+        console.log("could not find correct word");
+      }
+    });
+  }
+  );
+  
 }
 let checkGuess = (guess, correct) =>{
   statusLst = [];
   for(let i = 0; i < 5; i++){
     if(guess[i] === correct[i]){
-      statusLst[i] = 2;
+      statusLst[i] = "correct";
     }
     else if(correct.includes(guess[i])){
-      statusLst[i] = 1;
+      statusLst[i] = "present";
     }
     else{
-      statusLst[i] = 0;
+      statusLst[i] = "absent";
     }
   }
   return statusLst;
   
-}
+};
 //-----------------------------
 //#region Routes
 const guess = (request, response) => {
@@ -59,9 +64,15 @@ const guess = (request, response) => {
     }
     // If nothing is returned, then result will be undefined
     if (result) {
-      let correctWord = getCorrect();
-      statusLst = checkGuess(guess, correctWord);
-      response.status(200).json({guess, statusLst});
+      try{
+        let correctWord = await getCorrect();
+        statusLst = checkGuess(guess, correctWord);
+        response.status(200).json({guess, statusLst});
+      }
+      catch{
+        console.error(error);
+        response.sendStatus(500);
+      }
     } else {
       response.sendStatus(404);
     }
@@ -73,4 +84,10 @@ module.exports = {
   guess
 };
 
-console.log(checkGuess("hello", "chain"));
+const main = async ()=>{
+  
+}
+
+
+
+
