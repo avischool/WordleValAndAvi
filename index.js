@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
   res.json({ info: "Our Wordle Game" });
 });
 
-app.get("/try/:guess", db.checkGuess);
+app.get("/try/:guess", db.guess);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
