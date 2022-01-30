@@ -67,11 +67,10 @@ const guess = (request, response) => {
       const findResult = async() =>{
         try{
           let correctWord = await getCorrect();
-          statusLst = checkGuess(guess, correctWord);
+          let statusLst = checkGuess(guess, correctWord.word);
           response.status(200).json({guess, statusLst});
         }
         catch{
-          console.error(error);
           response.sendStatus(500);
         }
       } 
@@ -88,9 +87,6 @@ module.exports = {
   guess
 };
 
-const main = async ()=>{
-  
-}
 
 
 
