@@ -43,6 +43,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/try/:guess", db.guess);
+app.get("/valid/:guess", db.valid);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

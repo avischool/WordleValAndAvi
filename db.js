@@ -81,10 +81,35 @@ const guess = (request, response) => {
     }
   });
 };
+
+const valid = (request, response) => {
+  // Parse the id to generate a SQLite query
+  const guess = request.params.guess;
+  const query = `SELECT possword FROM word WHERE possword = ?`;//random db columns/name
+
+  // db.get will replace all ? in query sequentially with
+  // items from the array passed as the second parameter
+  // and then run the callback function passed as the third param
+  // What does the callback function do?
+  db.get(query, [guess], (error, result) => {
+    if (error) {
+      console.error(error.message);
+      response.status(400).json({ error: error.message });
+      return;
+    }
+    // If nothing is returned, then result will be undefined
+    if (result) {
+      response.sendStatus(200);
+    }
+    else {
+      response.sendStatus(404);
+    }
+  });
+};
 //-----------------------------
 //#endregion Routes
 module.exports = {
-  guess
+  guess, valid
 };
 
 
