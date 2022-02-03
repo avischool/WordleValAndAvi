@@ -99,10 +99,10 @@ const valid = (request, response) => {
     }
     // If nothing is returned, then result will be undefined
     if (result) {
-      response.sendStatus(200);
+      response.status(200).json("true");
     }
     else {
-      response.sendStatus(404);
+      response.status(404).json("false");
     }
   });
 };
