@@ -1,6 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld :msg="message" body="By Val and Avi"/>
+
 </template>
 
 <script>
@@ -8,6 +9,11 @@ import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      message: "Welcome to our Wordle!"
+    }
+  },
   components: {
     HelloWorld
   }
