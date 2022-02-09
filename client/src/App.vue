@@ -1,21 +1,28 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld :msg="message" body="By Val and Avi"/>
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <div>
+    <Cell v-for="(letter,i) in letters" :key="i" :letter="letter"/>
+
+  </div>
+  
 
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Cell from '@/components/grid/Cell.vue'
 
 export default {
   name: 'App',
   data() {
     return {
-      message: "Welcome to our Wordle!"
+      message: "Welcome to our Wordle!",
+      letters:"HELLO"
     }
   },
   components: {
-    HelloWorld
+    HelloWorld,
+    Cell
   }
 }
 </script>
