@@ -1,7 +1,7 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <div>
-    <Cell v-for="(letter,i) in letters" :key="i" :letter="letter"/>
+  <div id="griddiv">
+    <Grid :rowLetters="sample"/>
 
   </div>
   
@@ -10,19 +10,20 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import Cell from '@/components/grid/Cell.vue'
+import Grid from '@/components/grid/Grid.vue'
 
 export default {
   name: 'App',
   data() {
     return {
       message: "Welcome to our Wordle!",
-      letters:"HELLO"
+      letters:"HELLO",
+      sample:["hello","hello"],
     }
   },
   components: {
     HelloWorld,
-    Cell
+    Grid
   }
 }
 </script>
