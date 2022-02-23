@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Cell v-for="(letter, i) in cellLetters" :key="i" :letter="letter"/>
+      <Cell v-for="(letter, i) in wordRow" :key="i" :letter="letter"/>
   </div>
 </template>
 
@@ -8,11 +8,20 @@
 import Cell from '@/components/grid/Cell.vue'
 export default {
     name: "Row",
-    props: ["cellLetters"],
+    props:{
+        cellLetters: String
+    },
     data(){
     return{
       
     }
+  },
+  computed: {
+    wordRow(){
+      return Array.from({length: 5}, 
+      (_,idx) => this.cellLetters[idx] ? this.cellLetters[idx] : " ")
+    }     
+    
   },
   components: {
     Cell
