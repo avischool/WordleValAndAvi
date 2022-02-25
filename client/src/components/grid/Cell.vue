@@ -1,5 +1,5 @@
 <template>
-  <div id = cell>
+  <div class = "cell">
       {{letter}}
   </div>
 </template>
@@ -14,12 +14,21 @@ export default {
 }
 </script>
 
-<style>
- #cell{
-     display: inline-block;
-     border: 5px solid black;
-     width: 50px;
-     height: 50px;
-     margin:5px;
+<style lang='scss'>
+ .cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightseagreen;
+
+    width: 50px;
+    height: 50px;
+    text-transform: uppercase;
+    font-weight: 800;
+    border: 1px solid #888;
+
+    &:not(:last-child){
+    margin-right: 5px;
+    }
  }
 </style>

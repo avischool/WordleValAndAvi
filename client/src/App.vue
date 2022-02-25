@@ -1,7 +1,7 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <div id="griddiv">
-    <Grid :rowLetters="wordList"/>
+    <Grid :rowLetters="wordList" :currentWord="currentword"/>
 
   </div>
   
@@ -29,19 +29,52 @@ export default {
     return {
       message: "Welcome to our Wordle!",
       letters:"HELLO",
-      words:["hello","daily"],
+      words:[],
+      currentword:"",
     }
   },
   computed: {
     wordList() {
-      return Array.from({ length:6 }, (_,idx) => this.words[idx] ? this.words[idx] : "     ");
+      let gridList = Array.from({ length:6 }, (_,idx) => this.words[idx] ? this.words[idx] : "     ")
+      gridList[(this.words).length] = this.currentword
+      return gridList
+
     },
   },
   components: {
     HelloWorld,
-    Grid
+    Grid,
+  },
+  created() {
+    document.addEventListener("keydown",
+    this.handleKeyboard)
+  },
+  // This doesn't work currently
+  methods: {
+    handleKeyboard(event) {
+      if(event.repeat) return;
+
+
+
+      if(event.key === "Backspace"){
+        this.currentword = this.currentword.slice(0,-1);
+      } 
+      else if (event.key === "Enter" && this.currentword.length >= 5 && this.words.length<=4){
+        this.words = [...this.words,this.currentword]
+        this.currentword = ""
+        // this.wordList.append(this.currentword);
+        // currentword = ""
+      }
+      else {
+        this.currentword += event.key
+
+      }
+      
+
+    }
   }
 }
+
 </script>
 
 <style lang="scss">

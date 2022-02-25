@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Grid">
       <Row v-for="(cellLetters, i) in rowLetters" :key="i" :cellLetters="cellLetters"/>
   </div>
 </template>
@@ -24,5 +24,12 @@ export default {
 </script>
 
 <style>
+
+.Grid {
+  display: flex;
+  flex-flow: column;
+  width: 300px;
+  margin: 0 auto;
+}
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Row">
       <Cell v-for="(letter, i) in wordRow" :key="i" :letter="letter"/>
   </div>
 </template>
@@ -9,7 +9,7 @@ import Cell from '@/components/grid/Cell.vue'
 export default {
     name: "Row",
     props:{
-        cellLetters: String
+        cellLetters: String,
     },
     data(){
     return{
@@ -30,6 +30,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.Row {
+  display: flex;
+
+  &:not(:last-child) {
+  margin-bottom: 5px;
+  }
+}
 
 </style>
