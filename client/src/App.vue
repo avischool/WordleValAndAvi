@@ -53,6 +53,9 @@ export default {
   methods: {
     handleKeyboard(event) {
       if(event.repeat) return;
+      if (/^[a-z()]$/i.test(event.key)){
+        this.currentword += event.key;
+      }
 
 
 
@@ -64,10 +67,6 @@ export default {
         this.currentword = ""
         // this.wordList.append(this.currentword);
         // currentword = ""
-      }
-      else {
-        this.currentword += event.key
-
       }
       
 

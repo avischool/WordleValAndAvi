@@ -1,5 +1,7 @@
 <template>
+
   <div class="Grid">
+    
       <Row v-for="(cellLetters, i) in rowLetters" :key="i" :cellLetters="cellLetters"/>
   </div>
 </template>
