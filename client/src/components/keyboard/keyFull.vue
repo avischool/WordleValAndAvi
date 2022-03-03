@@ -1,6 +1,6 @@
 <template>
-  <div>
-      <KeyRow v-for="(cellLetters, i) in rowLetters" :key="i" :cellLetters="cellLetters"/>
+  <div class="keyFull">
+      <KeyRow v-for="(cellLetters, i) in rowLetters" :key="i" :cellLetters="cellLetters" :onClick="onClick"/>
   </div>
 </template>
 
@@ -8,9 +8,7 @@
 import KeyRow from '@/components/keyboard/keyRow.vue'
 export default {
 name: "KeyFull",
-    props:{
-        rowLetters: Object
-    },
+    props:["rowLetters","onClick"],
     data(){
     return{
     
@@ -24,5 +22,14 @@ name: "KeyFull",
 </script>
 
 <style>
+
+.keyFull {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin-top:10px;
+}
+
+
 
 </style>

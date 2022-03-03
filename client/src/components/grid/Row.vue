@@ -33,6 +33,7 @@ export default {
 <style lang="scss">
 .Row {
   display: flex;
+  justify-content: center;
 
   &:not(:last-child) {
   margin-bottom: 5px;

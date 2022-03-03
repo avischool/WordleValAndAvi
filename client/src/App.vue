@@ -1,7 +1,10 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <div id="griddiv">
+    <h1>Wordle but better</h1>
     <Grid :rowLetters="wordList" :currentWord="currentword"/>
+    <br>
+    <KeyFull :rowLetters="keyList" :onClick="handleKeyboard"/>
 
   </div>
   
@@ -11,6 +14,7 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import Grid from '@/components/grid/Grid.vue'
+import KeyFull from '@/components/keyboard/KeyFull.vue'
 
 /*
 Component
@@ -31,6 +35,7 @@ export default {
       letters:"HELLO",
       words:[],
       currentword:"",
+      keyList:[("qwertyuiop").split(''),("asdfghjkl").split(''),["Enter","z","x","c","v","b","n","m","Backspace"]],
     }
   },
   computed: {
@@ -44,6 +49,7 @@ export default {
   components: {
     HelloWorld,
     Grid,
+    KeyFull
   },
   created() {
     document.addEventListener("keydown",
